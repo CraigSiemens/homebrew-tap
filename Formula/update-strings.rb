@@ -12,9 +12,9 @@ class UpdateStrings < Formula
     system "make", "build", "completions"
     bin.install ".build/release/update-strings"
 
-    bash_completion.install ".build/completions/bash" => "carthage"
-    zsh_completion.install ".build/completions/zsh" => "_carthage"
-    fish_completion.install ".build/completions/fish" => "carthage.fish"
+    bash_completion.install ".build/completions/bash" => "update-strings"
+    zsh_completion.install ".build/completions/zsh" => "_update-strings"
+    fish_completion.install ".build/completions/fish" => "update-strings.fish"
   end
 
   test do
