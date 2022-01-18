@@ -1,5 +1,5 @@
 class UpdateStrings < Formula
-  desc "Commands for working with string files for iOS, macOS, tvOS, and watchOS development."
+  desc "Commands for working with string files"
   homepage "https://github.com/CraigSiemens/update-strings"
   url "https://github.com/CraigSiemens/update-strings.git", tag: "1.0.0"
   license "MIT"
