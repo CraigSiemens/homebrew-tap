@@ -1,7 +1,7 @@
 class UpdateStrings < Formula
   desc "Commands for working with string files"
   homepage "https://github.com/CraigSiemens/update-strings"
-  url "https://github.com/CraigSiemens/update-strings.git", tag: "1.0.0"
+  url "https://github.com/CraigSiemens/update-strings.git", tag: "1.1.0"
   license "MIT"
   head "https://github.com/CraigSiemens/update-strings.git", branch: "main"
 
