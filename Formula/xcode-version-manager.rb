@@ -1,12 +1,14 @@
 class XcodeVersionManager < Formula
   desc "Manage multiple installed versions of Xcode"
   homepage "https://github.com/CraigSiemens/xcode-version-manager"
-  url "https://github.com/CraigSiemens/xcode-version-manager.git", tag: "0.0.0"
+  url "https://github.com/CraigSiemens/xcode-version-manager.git", 
+    tag: "0.0.0",
+    revision: "f2151ff1d818eba59e1ebfc7b3bb5b12fa1db271"
   license "MIT"
   head "https://github.com/CraigSiemens/xcode-version-manager.git", branch: "main"
 
-  depends_on xcode: ["12.5", :build]
-  depends_on macos: :catalina
+  depends_on xcode: ["13.3", :build]
+  uses_from_macos "swift"
 
   def install
     system "make", "build", "completions"

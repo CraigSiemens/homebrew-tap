@@ -1,12 +1,14 @@
 class UpdateStrings < Formula
   desc "Commands for working with string files"
   homepage "https://github.com/CraigSiemens/update-strings"
-  url "https://github.com/CraigSiemens/update-strings.git", tag: "1.1.0"
+  url "https://github.com/CraigSiemens/update-strings.git",
+    tag: "1.1.0",
+    revision: "bb4b314dbe46fb21e64921ff50e382d4ff6fc9d3"
   license "MIT"
   head "https://github.com/CraigSiemens/update-strings.git", branch: "main"
 
   depends_on xcode: ["12.5", :build]
-  depends_on macos: :catalina
+  uses_from_macos "swift"
 
   def install
     system "make", "build", "completions"
