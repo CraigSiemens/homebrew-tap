@@ -2,8 +2,8 @@ class RandomPairs < Formula
   desc "Manage multiple installed versions of Xcode"
   homepage "https://github.com/CraigSiemens/random-pairs"
   url "https://github.com/CraigSiemens/random-pairs.git", 
-    tag: "",
-    revision: ""
+    tag: "0",
+    revision: "7546929f29f224bbb0af5e5859995f2967b307c4"
   license "MIT"
   head "https://github.com/CraigSiemens/random-pairs.git", branch: "main"
 
