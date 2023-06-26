@@ -9,6 +9,8 @@ class RandomPairs < Formula
 
   depends_on xcode: ["14.2", :build]
   uses_from_macos "swift"
+  
+  depends_on "jq"
 
   def install
     system "make", "random-pairs", "completions"
