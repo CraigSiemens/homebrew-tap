@@ -1,5 +1,5 @@
 class RandomPairs < Formula
-  desc "Manage multiple installed versions of Xcode"
+  desc "A set of tools for generating and tracking random pairs of items."
   homepage "https://github.com/CraigSiemens/random-pairs"
   url "https://github.com/CraigSiemens/random-pairs.git", 
     tag: "1.0.0",
@@ -7,10 +7,9 @@ class RandomPairs < Formula
   license "MIT"
   head "https://github.com/CraigSiemens/random-pairs.git", branch: "main"
 
+  depends_on "jq"
   depends_on xcode: ["14.2", :build]
   uses_from_macos "swift"
-  
-  depends_on "jq"
 
   def install
     system "make", "random-pairs", "completions"
