@@ -2,8 +2,8 @@ class RandomPairs < Formula
   desc "A set of tools for generating and tracking random pairs of items."
   homepage "https://github.com/CraigSiemens/random-pairs"
   url "https://github.com/CraigSiemens/random-pairs.git", 
-    tag: "1.0.2",
-    revision: "9f884310112b6c93033042aaadbef8c2b7484ec2"
+    tag: "1.0.3",
+    revision: "11aab3b617953d7d4ce7ff30f9744446cb2c1098"
   license "MIT"
   head "https://github.com/CraigSiemens/random-pairs.git", branch: "main"
 
