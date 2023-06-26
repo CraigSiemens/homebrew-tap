@@ -7,7 +7,6 @@ class RandomPairs < Formula
   license "MIT"
   head "https://github.com/CraigSiemens/random-pairs.git", branch: "main"
 
-  depends_on "jq"
   depends_on xcode: ["14.2", :build]
   uses_from_macos "swift"
 
