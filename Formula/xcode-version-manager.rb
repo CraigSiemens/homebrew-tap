@@ -7,6 +7,11 @@ class XcodeVersionManager < Formula
   license "MIT"
   head "https://github.com/CraigSiemens/xcode-version-manager.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/CraigSiemens/homebrew-tap/releases/download/xcode-version-manager-0.7.0"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "1cda8d00504e7d9e81c393f1f9e60af547591e1bdcf34716d09023750f204ce9"
+  end
+
   depends_on xcode: ["15.0", :build]
   uses_from_macos "swift"
 
