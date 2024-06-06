@@ -1,9 +1,9 @@
 class RandomPairs < Formula
-  desc "A set of tools for generating and tracking random pairs of items."
+  desc "Generate and track random pairs of items"
   homepage "https://github.com/CraigSiemens/random-pairs"
-  url "https://github.com/CraigSiemens/random-pairs.git", 
-    tag: "1.0.5",
-    revision: "3427686b23f12e4dcf8e2883960f21684ad505a6"
+  url "https://github.com/CraigSiemens/random-pairs.git",
+      tag:      "1.0.5",
+      revision: "3427686b23f12e4dcf8e2883960f21684ad505a6"
   license "MIT"
   head "https://github.com/CraigSiemens/random-pairs.git", branch: "main"
 
@@ -17,15 +17,6 @@ class RandomPairs < Formula
   end
 
   test do
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test random-pairs`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system "#{bin}/program", "do", "something"`.
-    system "false"
+    system "#{bin}/random-pairs", "-h"
   end
 end
