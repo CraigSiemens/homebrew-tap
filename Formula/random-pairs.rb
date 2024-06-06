@@ -7,6 +7,12 @@ class RandomPairs < Formula
   license "MIT"
   head "https://github.com/CraigSiemens/random-pairs.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/CraigSiemens/homebrew-tap/releases/download/random-pairs-1.0.5"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "c1c7485003bbba16ff7ed2e2cf8dc7e44b0c7f0116835ab58bb65bb43ec261c3"
+  end
+
   depends_on xcode: ["14.2", :build]
   uses_from_macos "swift"
 
