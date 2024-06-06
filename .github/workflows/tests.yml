@@ -38,9 +38,13 @@ jobs:
         if: always() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: bottles_${{ matrix.os }}
+          name: bottles_${{ runner.os }}
           path: '*.bottle.*'
 
       - name: Add pr-pull label
         if: github.event_name == 'pull_request'
-        run: gh pr edit --add-label pr-pull
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          brew install gh
+          gh pr edit ${{ github.event.number }} --add-label pr-pull
