@@ -7,16 +7,13 @@ class XcodeVersionManager < Formula
   license "MIT"
   head "https://github.com/CraigSiemens/xcode-version-manager.git", branch: "main"
 
-  depends_on xcode: ["13.3", :build]
+  depends_on xcode: ["15.0", :build]
   uses_from_macos "swift"
 
   def install
-    system "make", "build", "completions"
+    system "make", "build"
     bin.install ".build/release/xcvm"
-
-    bash_completion.install ".build/completions/bash" => "xcvm"
-    zsh_completion.install ".build/completions/zsh" => "_xcvm"
-    fish_completion.install ".build/completions/fish" => "xcvm.fish"
+    generate_completions_from_executable(bin/"xcvm", "--generate-completion-script")
   end
 
   test do

@@ -11,12 +11,9 @@ class RandomPairs < Formula
   uses_from_macos "swift"
 
   def install
-    system "make", "random-pairs", "completions"
+    system "make", "random-pairs"
     bin.install ".build/release/random-pairs"
-
-    bash_completion.install ".build/completions/bash" => "random-pairs"
-    zsh_completion.install ".build/completions/zsh" => "_random-pairs"
-    fish_completion.install ".build/completions/fish" => "random-pairs.fish"
+    generate_completions_from_executable(bin/"random-pairs", "--generate-completion-script")
   end
 
   test do

@@ -11,12 +11,9 @@ class UpdateStrings < Formula
   uses_from_macos "swift"
 
   def install
-    system "make", "build", "completions"
+    system "make", "build"
     bin.install ".build/release/update-strings"
-
-    bash_completion.install ".build/completions/bash" => "update-strings"
-    zsh_completion.install ".build/completions/zsh" => "_update-strings"
-    fish_completion.install ".build/completions/fish" => "update-strings.fish"
+    generate_completions_from_executable(bin/"update-strings", "--generate-completion-script")
   end
 
   test do
