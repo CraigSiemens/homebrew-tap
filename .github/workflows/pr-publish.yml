@@ -2,20 +2,19 @@
 # brew tap-new USER/REPOSITORY
 # https://brew.sh/2020/11/18/homebrew-tap-with-bottles-uploaded-to-github-releases/
 
-name: brew pr-pull
+name: PR - Publish
 
 on:
-  pull_request_target:
+  pull_request:
     types:
-      - labeled
+      - closed
 
 jobs:
-  pr-pull:
-    if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
-    runs-on: ubuntu-22.04
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
     steps:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
@@ -27,16 +26,14 @@ jobs:
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
           PULL_REQUEST: ${{ github.event.pull_request.number }}
-        run: brew pr-pull --debug --tap="$GITHUB_REPOSITORY" "$PULL_REQUEST"
+        run: |
+          brew pr-pull --debug \
+            --tap "$GITHUB_REPOSITORY" \
+            --workflows pr-build-bottle.yml \
+            "$PULL_REQUEST"
 
       - name: Push commits
         uses: Homebrew/actions/git-try-push@master
         with:
           token: ${{ github.token }}
           branch: main
-
-      - name: Delete branch
-        if: github.event.pull_request.head.repo.fork == false
-        env:
-          BRANCH: ${{ github.event.pull_request.head.ref }}
-        run: git push --delete origin "$BRANCH"
