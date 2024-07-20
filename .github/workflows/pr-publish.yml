@@ -8,13 +8,21 @@ on:
   pull_request:
     types:
       - closed
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR Number'
+        required: true
+        type: number
 
 jobs:
   publish:
-    if: github.event.pull_request.merged == true
+    if: ${{ github.event.pull_request.merged || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number || inputs.pr_number }}
     steps:
       - name: Set up Homebrew
         uses: Homebrew/actions/setup-homebrew@master
@@ -22,15 +30,44 @@ jobs:
       - name: Set up git
         uses: Homebrew/actions/git-user-config@master
 
-      - name: Pull bottles
+      - name: Upload bottles
         env:
+          GH_TOKEN: ${{ github.token }}
           HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
-          PULL_REQUEST: ${{ github.event.pull_request.number }}
         run: |
-          brew pr-pull --debug \
-            --tap "$GITHUB_REPOSITORY" \
-            --workflows pr-build-bottle.yml \
-            "$PULL_REQUEST"
+          temp_dir=$(mktemp -d download-bottles.XXXXXXXX -p /tmp)
+          cd "$temp_dir"
+
+          # Get the branch name from the pull request number
+          branch=$(
+            gh pr view "$PULL_REQUEST_NUMBER" \
+              --repo "$GITHUB_REPOSITORY" \
+              --json headRefName \
+              --jq '.headRefName'
+          )
+
+          # Get the pr-build-bottle.yml run id from the branch name
+          run_id=$(
+            gh run list \
+              --repo "$GITHUB_REPOSITORY" \
+              --branch "$branch" \
+              --workflow pr-build-bottle.yml \
+              --json databaseId \
+              --jq 'first.databaseId'
+          )
+
+          # Download the artifacts from the run
+          gh run download \
+              --repo "$GITHUB_REPOSITORY" \
+              "$run_id"
+
+          # Move the bottle contents to the current folder
+          mv bottles_*/* .
+          rm -r bottles_*
+
+          # Upload the bottles for the tap
+          brew tap "$GITHUB_REPOSITORY"
+          brew pr-upload --debug
 
       - name: Push commits
         uses: Homebrew/actions/git-try-push@master
