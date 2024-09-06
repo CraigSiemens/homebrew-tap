@@ -2,8 +2,8 @@ class XcodeVersionManager < Formula
   desc "Manage multiple installed versions of Xcode"
   homepage "https://github.com/CraigSiemens/xcode-version-manager"
   url "https://github.com/CraigSiemens/xcode-version-manager.git",
-      tag:      "1.2.0",
-      revision: "fe217fd6ff6e33516ef9770d5fa83d74870e1853"
+      tag:      "1.2.1",
+      revision: "a39f07b70aaf8a9e0fad7ebb2282628871b11423"
   license "MIT"
   head "https://github.com/CraigSiemens/xcode-version-manager.git", branch: "main"
 
