@@ -8,8 +8,8 @@ class XcodeVersionManager < Formula
   head "https://github.com/CraigSiemens/xcode-version-manager.git", branch: "main"
 
   bottle do
-    root_url "https://github.com/CraigSiemens/homebrew-tap/releases/download/xcode-version-manager-1.2.1"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma: "10c549b67894e845e250b7d21ab4b51ff9e3f39fc1074b1aa7f5765b40707e76"
+    root_url "https://github.com/CraigSiemens/homebrew-tap/releases/download/xcode-version-manager-1.2.2"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "270a7be1e61557f1cb3cd98994f52f9851ec783809f685fa48e9ca07e46b63ac"
   end
 
   depends_on xcode: ["15.0", :build]
