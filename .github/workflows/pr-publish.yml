@@ -58,8 +58,8 @@ jobs:
 
           # Download the artifacts from the run
           gh run download \
-              --repo "$GITHUB_REPOSITORY" \
-              "$run_id"
+            --repo "$GITHUB_REPOSITORY" \
+            "$run_id"
 
           # Move the bottle contents to the current folder
           mv bottles_*/* .

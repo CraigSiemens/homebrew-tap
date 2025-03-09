@@ -11,6 +11,15 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
+      - name: Select latest Xcode version
+        run: |
+          xcode=$(
+            find /Applications -name "Xcode*" -maxdepth 1 \
+              | sort -n \
+              | tail -n 1
+          )
+          sudo xcode-select -s "$xcode"
+
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
